@@ -1,0 +1,120 @@
+Nome: Anderson Silva Souza
+Matrícula: 475242
+Disciplina: DESENVOLVIMENTO DE SOFTWARE PARA WEB (2022.2)
+
+
+================= QUESTÃO 01 ========================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividade 01 | Questão 01</title>
+</head>
+<body>
+    <p id="imc">
+      O IMC é 
+    </p>
+    <script>
+      function imc(peso, altura){
+        return (peso / (altura * altura)).toFixed(2);
+      }
+      document.getElementById("imc").innerHTML += imc(70, 1.70);
+    </script>
+</body>
+</html>
+
+================= QUESTÃO 02 ========================
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividade 01 | Questão 02</title>
+</head>
+<body>
+    <p id="nota"></p>
+    <script>
+
+      let nota1 = 7
+      let nota2 = 6
+
+      function situacaoAluno(np1, np2){
+
+        let media = ((np1 + np2) / 2).toFixed(1);
+
+        if(media >= 7){
+          return 'Aprovado com Conceito A'
+        }else if(media >= 4 && media <= 6.9){
+          let notaFinal = 6;
+
+          if(notaFinal < 4){
+            return 'Reprovado na Final'
+          }
+
+          let mediaFinal = media + notaFinal;
+
+          if(mediaFinal >= 5){
+            return 'Aprovado com Conceito B'
+          }else {
+            return 'Reprovado na Final'
+          }
+        }else {
+          return 'Reprovado direto'
+        }
+
+      }
+      document.getElementById("nota").innerHTML = situacaoAluno(nota1, nota2);
+    </script>
+</body>
+</html>
+
+================= QUESTÃO 03 ========================
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividade 01 | Questão 03</title>
+</head>
+
+<body>
+
+  <h2>JavaScript Arrays</h2>
+  <div id="demo"></div>
+  <script>
+
+    const alunos = [
+      { nome: "Leandro", ira: 7.5 },
+      { nome: "Maria", ira: 8.2 },
+      { nome: "José", ira: 4.5 },
+      { nome: "Diana", ira: 5.4 },
+      { nome: "Bruna", ira: 6.7 }
+    ];
+
+    function reprovados(alunos) {
+      let res = "<ul>"
+
+      alunos.forEach(aluno => {
+        if(aluno.ira < 7){
+          res += `<li> Nome: ${aluno.nome}, IRA: ${aluno.ira} </li>`;
+        }
+      })
+
+      res += "</ul>"
+
+      return res
+    }
+    document.getElementById("demo").innerHTML = reprovados(alunos);
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividade 01 | Questão 02</title>
+</head>
+<body>
+    <p id="nota"></p>
+    <script>
+
+      let nota1 = 7
+      let nota2 = 6
+
+      function situacaoAluno(np1, np2){
+
+        let media = ((np1 + np2) / 2).toFixed(1);
+
+        if(media >= 7){
+          return 'Aprovado com Conceito A'
+        }else if(media >= 4 && media <= 6.9){
+          let notaFinal = 6;
+
+          if(notaFinal < 4){
+            return 'Reprovado na Final'
+          }
+
+          let mediaFinal = media + notaFinal;
+
+          if(mediaFinal >= 5){
+            return 'Aprovado com Conceito B'
+          }else {
+            return 'Reprovado na Final'
+          }
+        }else {
+          return 'Reprovado direto'
+        }
+
+      }
+      document.getElementById("nota").innerHTML = situacaoAluno(nota1, nota2);
+    </script>
+</body>
+</html>
