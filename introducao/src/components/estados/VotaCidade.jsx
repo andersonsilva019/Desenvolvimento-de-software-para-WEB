@@ -10,6 +10,8 @@ export function VotaCidade(){
     senador: 0,
   })
 
+  [['quixada', 0], []]
+
   function reset(){
     setVotes({
       quixada: 0,
@@ -33,6 +35,8 @@ export function VotaCidade(){
     const winnerArr = Object.entries(votes).sort((a,b) => b[1] - a[1])
 
     const [first, second, third] = winnerArr
+
+    console.log(winnerArr)
 
     if(first[1] > second[1] && first[1] > third[1]){
       return setWinner(first[0])
