@@ -35,24 +35,6 @@
       "name": "Viva",
       "ira": 9,
       "course": "ES"
-    },
-    {
-      "name": "Anderson Silva Souza",
-      "course": "EC",
-      "ira": "4",
-      "id": 7
-    },
-    {
-      "name": "Anderson Silva Souza",
-      "course": "CC",
-      "ira": "10",
-      "id": 8
-    },
-    {
-      "name": "Anderson Silva Souza",
-      "course": "EC",
-      "ira": "9",
-      "id": 9
     }
   ]
 }

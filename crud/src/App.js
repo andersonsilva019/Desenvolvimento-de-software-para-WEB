@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min'
 
 import { CreateStudent } from './components/students/CreateStudent';
-/* import { EditStudent } from './components/students/EditStudent';*/
+import { EditStudent } from './components/students/EditStudent';
 /* import { EditTeacher } from './components/students/EditTeacher';*/
 import { ListStudent } from './components/students/ListStudent';
 
@@ -70,7 +70,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/create-student' element={<CreateStudent />} />
           <Route path='/create-teacher' element={<CreateTeacher />} />
-          {/* <Route path='/edit-student' element={<EditStudent />} /> */}
+          <Route path='/edit-student/:id' element={<EditStudent />} />
           {/* <Route path='/edit-teacher' element={<EditTeacher />} /> */}
           <Route path='/list-student' element={<ListStudent />} />
           <Route path='/list-teacher' element={<ListTeacher />} />

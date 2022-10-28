@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { api } from '../../services/api';
+import { useFirebase } from '../../hook/useFirebase';
+import { studentService } from '../../services/StudentService';
 
 export function CreateStudent() {
 
@@ -10,25 +11,31 @@ export function CreateStudent() {
   const [course, setCourse] = useState('');
   const [ira, setIra] = useState(0);
   const [loading, setLoading] = useState(false);
+  const { db } = useFirebase()
 
   async function handleSubmit(event) {
-    event.preventDefault();
 
-    setLoading(true);
+    try {
+      event.preventDefault();
 
-    const newStudent = { name, course, ira }
+      setLoading(true);
 
-    await api.post('/students', newStudent);
+      const newStudent = { name, course, ira }
 
-    alert('Estudante cadastrado com sucesso!');
+      //await api.post('/students', newStudent);
 
-    navigate('/list-student');
+      await studentService.create(db, newStudent)
 
-    setLoading(false);
+      navigate('/list-student');
 
-    setName('');
-    setCourse('');
-    setIra(0);
+      setName('');
+      setCourse('');
+      setIra(0);
+    } catch (error) {
+      console.log(error.message)
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
