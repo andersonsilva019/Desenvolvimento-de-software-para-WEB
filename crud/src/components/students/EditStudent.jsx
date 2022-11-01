@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { api } from '../../services/api';
+import { useFirebase } from '../../hook/useFirebase';
+import { studentServiceFirebase } from '../../services/StudentServiceFirebase';
 
 export function EditStudent() {
 
@@ -13,42 +14,48 @@ export function EditStudent() {
   const [course, setCourse] = useState('');
   const [ira, setIra] = useState(0);
   const [loading, setLoading] = useState(false);
-
+  const { db } = useFirebase()
 
   useEffect(() => {
     async function getStudent() {
       setLoading(true);
 
-      const response = await api.get(`/students/${id}`);
+      const data = await studentServiceFirebase.getStudentById(db, id)
 
-      setName(response.data.name);
-      setCourse(response.data.course);
-      setIra(response.data.ira);
-
+      setName(data.name);
+      setCourse(data.course);
+      setIra(data.ira);
       setLoading(false);
     }
 
     getStudent();
-  },[id])
+  }, [id, db])
 
   async function handleSubmit(event) {
     event.preventDefault();
+    try {
 
-    setLoading(true);
+      setLoading(true);
 
-    const newStudent = { name, course, ira }
+      const newStudent = { name, course, ira }
 
-    await api.put(`/students/${id}`, newStudent);
+      await studentServiceFirebase.edit(db, id, newStudent)
 
-    alert('Estudante editado com sucesso!');
+      alert('Estudante editado com sucesso!');
 
-    navigate('/list-student');
+      navigate('/list-student');
 
-    setLoading(false);
+      //await api.put(`/students/${id}`, newStudent);
 
-    setName('');
-    setCourse('');
-    setIra(0);
+    } catch (error) {
+      console.log(error.message)
+    } finally {
+      setLoading(false);
+
+      setName('');
+      setCourse('');
+      setIra(0);
+    }
   }
 
   return (
