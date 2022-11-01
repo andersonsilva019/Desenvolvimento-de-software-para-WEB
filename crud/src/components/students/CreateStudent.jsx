@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useFirebase } from '../../hook/useFirebase';
-import { studentService } from '../../services/StudentService';
+import { studentServiceFirebase } from '../../services/StudentServiceFirebase';
 
 export function CreateStudent() {
 
@@ -24,7 +24,7 @@ export function CreateStudent() {
 
       //await api.post('/students', newStudent);
 
-      await studentService.create(db, newStudent)
+      await studentServiceFirebase.create(db, newStudent)
 
       navigate('/list-student');
 
