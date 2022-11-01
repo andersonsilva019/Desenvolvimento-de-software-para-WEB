@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import { useFirebase } from '../../hook/useFirebase';
-import { api } from '../../services/api';
-import { studentService } from '../../services/StudentService';
+//import { api } from '../../services/api';
+import { studentServiceFirebase } from '../../services/StudentServiceFirebase';
 import { Loading } from '../Loading';
 
 export function ListStudent() {
@@ -13,15 +13,21 @@ export function ListStudent() {
 
   async function handleDeleteStudent(id) {
 
-    if (window.confirm('Tem certeza que deseja excluir este estudante?')) {
+    try {
+      if (window.confirm('Tem certeza que deseja excluir este estudante?')) {
 
-      await api.delete(`/students/${id}`)
+        //await api.delete(`/students/${id}`)
 
-      const newStudents = students.filter(student => student.id !== id);
+        await studentServiceFirebase.delete(db, id)
 
-      setStudents(newStudents);
-      
-      alert('Estudante excluído com sucesso!');
+        const newStudents = students.filter(student => student.id !== id);
+
+        setStudents(newStudents);
+
+        alert('Estudante excluído com sucesso!');
+      }
+    } catch (error) {
+      console.log(error.message)
     }
   }
 
@@ -29,9 +35,9 @@ export function ListStudent() {
     async function getAllStudents() {
       try {
         setLoading(true)
-        const data = await studentService.list(db)
+        const data = await studentServiceFirebase.list(db)
         setStudents(data);
-        
+
       } catch (error) {
         console.log(error.message)
       } finally {
