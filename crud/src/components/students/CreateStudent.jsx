@@ -9,7 +9,7 @@ export function CreateStudent() {
 
   const [name, setName] = useState('');
   const [course, setCourse] = useState('');
-  const [ira, setIra] = useState(0);
+  const [ira, setIra] = useState('');
   const [loading, setLoading] = useState(false);
   const { db } = useFirebase()
 
@@ -30,7 +30,7 @@ export function CreateStudent() {
 
       setName('');
       setCourse('');
-      setIra(0);
+      setIra('');
     } catch (error) {
       console.log(error.message)
     } finally {
@@ -53,7 +53,6 @@ export function CreateStudent() {
               type="text"
               value={name}
               onChange={e => setName(e.target.value)}
-              step='0.01'
             />
           </label>
         </div>
@@ -66,7 +65,6 @@ export function CreateStudent() {
               id="course"
               placeholder='Digite o curso do estudante'
               type="text"
-              step='0.01'
               value={course}
               onChange={e => setCourse(e.target.value)}
             />
@@ -79,9 +77,8 @@ export function CreateStudent() {
               className='form-control'
               placeholder='Digite o IRA do estudante'
               id="ira"
-              type="number"
+              type="text"
               value={ira}
-              step='0.01'
               onChange={e => setIra(e.target.value)}
             />
           </label>
