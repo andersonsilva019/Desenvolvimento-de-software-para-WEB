@@ -11,6 +11,7 @@ import { Home } from './pages/Home'
 import { Routes, Route, Link } from 'react-router-dom'
 import { CreateTeacher } from './components/teacher/CreateTeacher';
 import { ListTeacher } from './components/teacher/ListTeacher';
+import { EditTeacher } from './components/teacher/EditTeacher';
 
 function App() {
   return (
@@ -71,7 +72,7 @@ function App() {
           <Route path='/create-student' element={<CreateStudent />} />
           <Route path='/create-teacher' element={<CreateTeacher />} />
           <Route path='/edit-student/:id' element={<EditStudent />} />
-          {/* <Route path='/edit-teacher' element={<EditTeacher />} /> */}
+          <Route path='/edit-teacher/:id' element={<EditTeacher />} />
           <Route path='/list-student' element={<ListStudent />} />
           <Route path='/list-teacher' element={<ListTeacher />} />
         </Routes>
