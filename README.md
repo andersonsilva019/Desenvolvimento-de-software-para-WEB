@@ -11,7 +11,7 @@ https://user-images.githubusercontent.com/52974388/191065312-9448b966-d26f-4ccb-
 
 ### CRUD na entidade professor
 
-Todos os componentes utilizados para o CRUD da entidade professor se localiza em: `src/components/teacher/`
+Todos os componentes utilizados para o CRUD da entidade professor se localiza em: `crud/src/components/teacher/`
 
 
 #### Demonstração da atividade CRUD na entidade professor
