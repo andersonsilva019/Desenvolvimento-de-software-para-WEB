@@ -47,6 +47,15 @@ export function ListStudent() {
     getAllStudents();
   }, [db])
 
+  useEffect(() => {
+
+    const unsubscribe = studentServiceFirebase.listOnSnapshot(db, (data) => setStudents(data))
+    
+    return () => {
+      unsubscribe()
+    }
+  },[db])
+
   return (
     <div>
       <h1 className='text-primary fw-bold'>Lista de estudantes</h1>

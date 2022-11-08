@@ -6,7 +6,9 @@ import {
   doc,
   updateDoc,
   getDoc,
-  serverTimestamp
+  serverTimestamp,
+  query,
+  onSnapshot
 } from 'firebase/firestore'
 
 export const studentServiceFirebase = {
@@ -43,6 +45,16 @@ export const studentServiceFirebase = {
     await updateDoc(doc(firestoreDb, 'student', studentId), {
       ...student,
       updatedAt: serverTimestamp()
+    })
+  },
+  listOnSnapshot: (firestoreDb, cb) => {
+    const q = query(collection(firestoreDb, 'student'))
+    return onSnapshot(q, (querySnapshot) => {
+      const students = []
+      querySnapshot.forEach((doc) => {
+        students.push({ id: doc.id, ...doc.data() })
+      })
+      cb(students)
     })
   }
 }
